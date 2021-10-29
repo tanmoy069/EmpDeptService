@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.tanmoy.empdeptservice.model.Department;
+import com.tanmoy.empdeptservice.model.DepartmentList;
 import com.tanmoy.empdeptservice.model.Employee;
+import com.tanmoy.empdeptservice.model.EmployeeList;
 
 @RestController
 @RequestMapping("/empdept")
@@ -44,6 +46,20 @@ public class EmpDeptController {
 		String baseURI = deptBaseUrl + "/findby?id="+id;
 		Department dept = restTemp.getForObject(baseURI, Department.class);
 		return dept;
+	}
+	
+	@GetMapping("/findallemployee")
+	public EmployeeList findAllEmployee() {
+		String baseURI = empBaseUrl + "/findall";
+		EmployeeList empList = restTemp.getForObject(baseURI, EmployeeList.class);
+		return empList;
+	}
+	
+	@GetMapping("/findalldepartment")
+	public DepartmentList findAllDeparment() {
+		String baseURI = deptBaseUrl + "/findall";
+		DepartmentList deptList = restTemp.getForObject(baseURI, DepartmentList.class);
+		return deptList;
 	}
 
 }
