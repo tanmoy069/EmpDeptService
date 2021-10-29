@@ -26,4 +26,16 @@ public class EmpDeptController {
 		this.restTemp = restTemp;
 	}
 
+	@GetMapping("/findemployeeby")
+	public Employee findEmployeeBy(@RequestParam(name = "id", required = false) Integer id,
+			@RequestParam(name = "code", required = false) String code) {
+		String baseURI = empBaseUrl + "/findby?", extraURI = "";
+
+		if (id != null) extraURI += "id=" + id;
+		else extraURI += "code=" + code;
+
+		Employee emp = restTemp.getForObject(baseURI + extraURI, Employee.class);
+		return emp;
+	}
+
 }
