@@ -2,7 +2,10 @@ package com.tanmoy.empdeptservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +63,18 @@ public class EmpDeptController {
 		String baseURI = deptBaseUrl + "/findall";
 		DepartmentList deptList = restTemp.getForObject(baseURI, DepartmentList.class);
 		return deptList;
+	}
+	
+	@PostMapping("/saveEmployee")
+	public ResponseEntity<Boolean> saveEmployee(@RequestBody Employee emp) {
+		String baseURI = empBaseUrl + "/save";
+		return restTemp.postForEntity(baseURI, emp, Boolean.class);
+	}
+	
+	@PostMapping("/updateEmployee")
+	public ResponseEntity<Boolean> updateEmployee(@RequestBody Employee emp) {
+		String baseURI = empBaseUrl + "/update";
+		return restTemp.postForEntity(baseURI, emp, Boolean.class);
 	}
 
 }
