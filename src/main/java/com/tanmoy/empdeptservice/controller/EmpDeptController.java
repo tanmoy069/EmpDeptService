@@ -76,5 +76,17 @@ public class EmpDeptController {
 		String baseURI = empBaseUrl + "/update";
 		return restTemp.postForEntity(baseURI, emp, Boolean.class);
 	}
+	
+	@PostMapping("/saveDepartment")
+	public ResponseEntity<Boolean> saveDepartment(@RequestBody Department dept) {
+		String baseURI = deptBaseUrl + "/save";
+		return restTemp.postForEntity(baseURI, dept, Boolean.class);
+	}
+	
+	@PostMapping("/updateDepartment")
+	public ResponseEntity<Boolean> updateDepartment(@RequestBody Department dept) {
+		String baseURI = deptBaseUrl + "/update";
+		return restTemp.postForEntity(baseURI, dept, Boolean.class);
+	}
 
 }
